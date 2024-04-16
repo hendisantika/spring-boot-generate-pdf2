@@ -37,12 +37,14 @@ public class PdfGenerateService {
 
         String htmlContent = templateEngine.process(templateName, context);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(System.getProperty("user.dir") + pdfFileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(System.getProperty("user.dir") + "/output/" + pdfFileName);
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(htmlContent);
             renderer.layout();
             renderer.createPDF(fileOutputStream, false);
             renderer.finishPDF();
+            log.info(System.getProperty("user.dir"));
+            log.info("PDF Generated successfully ... ");
         } catch (FileNotFoundException e) {
             log.error(e.getMessage(), e);
         } catch (DocumentException e) {
