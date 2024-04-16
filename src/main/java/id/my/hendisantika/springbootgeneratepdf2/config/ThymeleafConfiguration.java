@@ -22,7 +22,7 @@ public class ThymeleafConfiguration {
         ClassLoaderTemplateResolver pdfTemplateResolver = new ClassLoaderTemplateResolver();
         pdfTemplateResolver.setPrefix("pdf-templates/");
         pdfTemplateResolver.setSuffix(".html");
-        pdfTemplateResolver.setTemplateMode("HTML5");
+        pdfTemplateResolver.setTemplateMode("HTML");
         pdfTemplateResolver.setCharacterEncoding("UTF-8");
         pdfTemplateResolver.setOrder(1);
         return pdfTemplateResolver;

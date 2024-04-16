@@ -3,7 +3,6 @@ package id.my.hendisantika.springbootgeneratepdf2.service;
 import com.lowagie.text.DocumentException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -29,8 +28,8 @@ import java.util.Map;
 public class PdfGenerateService {
     private final TemplateEngine templateEngine;
 
-    @Value("${pdf.directory}")
-    private String pdfDirectory;
+//    @Value("${pdf.directory}")
+//    private String pdfDirectory;
 
     public void generatePdfFile(String templateName, Map<String, Object> data, String pdfFileName) {
         Context context = new Context();
@@ -38,7 +37,7 @@ public class PdfGenerateService {
 
         String htmlContent = templateEngine.process(templateName, context);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(pdfDirectory + pdfFileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(System.getProperty("user.dir") + pdfFileName);
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(htmlContent);
             renderer.layout();
