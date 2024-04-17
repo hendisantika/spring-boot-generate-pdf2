@@ -2,7 +2,9 @@ package id.my.hendisantika.springbootgeneratepdf2.util;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
 import com.lowagie.text.Font;
+import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfWriter;
 import id.my.hendisantika.springbootgeneratepdf2.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -70,6 +72,17 @@ public class PDFGenerator {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
 
+    private void addLogo(Document document) {
+        try {
+            Image img = Image.getInstance(logoImgPath);
+            img.scalePercent(logoImgScale[0], logoImgScale[1]);
+            img.setAlignment(Element.ALIGN_RIGHT);
+            document.add(img);
+        } catch (DocumentException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
