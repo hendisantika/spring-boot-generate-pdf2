@@ -1,5 +1,6 @@
 package id.my.hendisantika.springbootgeneratepdf2.util;
 
+import com.itextpdf.layout.element.Paragraph;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -85,4 +89,18 @@ public class PDFGenerator {
             e.printStackTrace();
         }
     }
+
+    private void addDocTitle(Document document) throws DocumentException {
+        String localDateString = LocalDateTime.now().format(DateTimeFormatter.ofPattern(localDateFormat));
+        Paragraph p1 = new Paragraph();
+        leaveEmptyLine(p1, 1);
+        p1.add(new Paragraph(reportFileName, COURIER));
+        p1.setAlignment(Element.ALIGN_CENTER);
+        leaveEmptyLine(p1, 1);
+        p1.add(new Paragraph("Report generated on " + localDateString, COURIER_SMALL));
+
+        document.add(p1);
+
+    }
+
 }
