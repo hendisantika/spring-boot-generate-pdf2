@@ -10,6 +10,7 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import id.my.hendisantika.springbootgeneratepdf2.entity.Employee;
 import id.my.hendisantika.springbootgeneratepdf2.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -122,5 +123,23 @@ public class PDFGenerator {
         table.setHeaderRows(1);
         getDbData(table);
         document.add(table);
+    }
+
+    private void getDbData(PdfPTable table) {
+        List<Employee> list = employeeRepository.getAllEmployeeData();
+        for (Employee employee : list) {
+
+            table.setWidthPercentage(100);
+            table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            table.addCell(employee.getEmpId().toString());
+            table.addCell(employee.getEmpName());
+            table.addCell(employee.getEmpDept());
+            table.addCell(currencySymbol + employee.getEmpSal().toString());
+
+            System.out.println(employee.getEmpName());
+        }
+
     }
 }
