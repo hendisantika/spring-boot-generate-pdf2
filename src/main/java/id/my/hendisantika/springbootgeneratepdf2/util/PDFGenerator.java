@@ -1,11 +1,17 @@
 package id.my.hendisantika.springbootgeneratepdf2.util;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.pdf.PdfWriter;
 import id.my.hendisantika.springbootgeneratepdf2.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -42,4 +48,28 @@ public class PDFGenerator {
     private int noOfColumns;
     @Value("${table.columnNames}")
     private List<String> columnNames;
+
+    private static final Font COURIER = new Font(Font.FontFamily.COURIER, 20, Font.BOLD);
+    private static final Font COURIER_SMALL = new Font(Font.FontFamily.COURIER, 16, Font.BOLD);
+    private static final Font COURIER_SMALL_FOOTER = new Font(Font.FontFamily.COURIER, 12, Font.BOLD);
+
+    public void generatePdfReport() {
+        Document document = new Document();
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(getPdfNameWithDate()));
+            document.open();
+            addLogo(document);
+            addDocTitle(document);
+            createTable(document, noOfColumns);
+            addFooter(document);
+            document.close();
+            log.info("------------------Your PDF Report is ready!-------------------------");
+
+        } catch (FileNotFoundException | DocumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 }
