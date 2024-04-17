@@ -159,4 +159,8 @@ public class PDFGenerator {
         }
     }
 
+    private String getPdfNameWithDate() {
+        String localDateString = LocalDateTime.now().format(DateTimeFormatter.ofPattern(reportFileNameDateFormat));
+        return pdfDir + reportFileName + "-" + localDateString + ".pdf";
+    }
 }
