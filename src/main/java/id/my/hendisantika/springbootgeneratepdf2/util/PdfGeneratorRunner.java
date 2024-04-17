@@ -1,4 +1,4 @@
-package id.my.hendisantika.springbootgeneratepdf2;
+package id.my.hendisantika.springbootgeneratepdf2.util;
 
 import id.my.hendisantika.springbootgeneratepdf2.entity.Customer;
 import id.my.hendisantika.springbootgeneratepdf2.entity.QuoteItem;
