@@ -6,6 +6,9 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import id.my.hendisantika.springbootgeneratepdf2.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -100,7 +103,24 @@ public class PDFGenerator {
         p1.add(new Paragraph("Report generated on " + localDateString, COURIER_SMALL));
 
         document.add(p1);
-
     }
 
+    private void createTable(Document document, int noOfColumns) throws DocumentException {
+        Paragraph paragraph = new Paragraph();
+        leaveEmptyLine(paragraph, 3);
+        document.add(paragraph);
+
+        PdfPTable table = new PdfPTable(noOfColumns);
+
+        for (int i = 0; i < noOfColumns; i++) {
+            PdfPCell cell = new PdfPCell(new Phrase(columnNames.get(i)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.CYAN);
+            table.addCell(cell);
+        }
+
+        table.setHeaderRows(1);
+        getDbData(table);
+        document.add(table);
+    }
 }
