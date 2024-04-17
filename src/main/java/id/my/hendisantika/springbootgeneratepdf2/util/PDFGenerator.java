@@ -140,6 +140,16 @@ public class PDFGenerator {
 
             System.out.println(employee.getEmpName());
         }
+    }
 
+    private void addFooter(Document document) throws DocumentException {
+        Paragraph p2 = new Paragraph();
+        leaveEmptyLine(p2, 3);
+        p2.setAlignment(Element.ALIGN_MIDDLE);
+        p2.add(new Paragraph(
+                "------------------------End Of " + reportFileName + "------------------------",
+                COURIER_SMALL_FOOTER));
+
+        document.add(p2);
     }
 }
