@@ -152,4 +152,11 @@ public class PDFGenerator {
 
         document.add(p2);
     }
+
+    private static void leaveEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }
+    }
+
 }
