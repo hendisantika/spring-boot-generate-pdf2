@@ -16,6 +16,5 @@ public class SpringBootGeneratePdf2Application {
 
         pDFGenerator.generatePdfReport();
     }
-    }
 
 }
