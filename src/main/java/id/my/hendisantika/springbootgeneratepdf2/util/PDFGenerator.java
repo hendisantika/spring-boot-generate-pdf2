@@ -1,11 +1,11 @@
 package id.my.hendisantika.springbootgeneratepdf2.util;
 
-import com.itextpdf.layout.element.Paragraph;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -116,7 +117,7 @@ public class PDFGenerator {
         for (int i = 0; i < noOfColumns; i++) {
             PdfPCell cell = new PdfPCell(new Phrase(columnNames.get(i)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.CYAN);
+            cell.setBackgroundColor(Color.CYAN);
             table.addCell(cell);
         }
 

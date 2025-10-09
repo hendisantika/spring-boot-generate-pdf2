@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: 'mysql:9.4.0'
+    container_name: spring-boot-generate-pdf2-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 53cret
+      MYSQL_USER: yu71
+      MYSQL_PASSWORD: 53cret
+      MYSQL_DATABASE: employee
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "yu71", "-p53cret" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:

@@ -1,5 +1,6 @@
 package id.my.hendisantika.springbootgeneratepdf2.controller;
 
+import com.lowagie.text.DocumentException;
 import id.my.hendisantika.springbootgeneratepdf2.service.PdfGenerateService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class PDFExportController {
     public final PdfGenerateService pdfGeneratorService;
 
     @GetMapping("/pdf/generate")
-    public void generatePDF(HttpServletResponse response) throws IOException {
+    public void generatePDF(HttpServletResponse response) throws IOException, DocumentException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z");
         String currentDateTime = dateFormat.format(new Date());

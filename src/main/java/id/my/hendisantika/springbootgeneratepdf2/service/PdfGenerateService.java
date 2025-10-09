@@ -60,7 +60,7 @@ public class PdfGenerateService {
         }
     }
 
-    public void export(HttpServletResponse httpServletResponse) throws IOException {
+    public void export(HttpServletResponse httpServletResponse) throws IOException, DocumentException {
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, httpServletResponse.getOutputStream());
